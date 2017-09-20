@@ -81,11 +81,14 @@
     <script src="js/app.js"></script>
     ```
 
-3. Haga que el módulo antes creado tenga como propiedades:
-    * El nombre del usuario seleccionado.
-    * Una lista de objetos, donde cada objeto tendrá dos propiedades: nombre de plano, y número de puntos del plano.
+3. Haga que el módulo antes creado mantenga de forma privada:
+    * El nombre del autor seleccionado.
+    * El listado de nombre y tamaño de los planos del autor seleccionado. Es decir, una lista objetos, donde cada objeto tendrá dos propiedades: nombre de plano, y número de puntos del plano.
 
-4. Agregue al módulo 'app.js' (dentro de la clausura) una operación que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
+    Junto con una operación pública que permita cambiar el nombre del autor actualmente seleccionado.
+
+
+4. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
     * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
 
