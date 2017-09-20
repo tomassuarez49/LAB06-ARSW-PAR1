@@ -3,6 +3,8 @@
 
 ## Construción de un cliente 'grueso' con un API REST, HTML5, Javascript y CSS3. Parte I.
 
+### Trabajo individual o en parejas. A quienes tuvieron malos resultados en el parcial anterior se les recomienda hacerlo individualmente.
+
 ![](img/mock.png)
 
 * Al oprimir 'Get blueprints', consulta los planos del usuario dado en el formulario. Por ahora, si la consulta genera un error, sencillamente no se mostrará nada.
@@ -83,7 +85,7 @@
     * El nombre del usuario seleccionado.
     * Una lista de objetos, donde cada objeto tendrá dos propiedades: nombre de plano, y número de puntos del plano.
 
-4. Agregue al módulo 'app.js' (dentro de la clausura) una operación que permita actualizar el listado de los planos, a partir del nombre de su autor. Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
+4. Agregue al módulo 'app.js' (dentro de la clausura) una operación que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
     * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
 
@@ -93,35 +95,19 @@
 
 5. Asocie la operación antes creada (la de app.js) al evento 'on-click' del botón de consulta de la página.
 
-6. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
+6. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
 
-    
-    * Mostrar el listado de tuplas nombreplano/numero_puntos a partir de un nombre de autor. Para hacer esto:
-        * Haga que la operación 
-        * Use la operación de consulta de planos de 'apimock'. Aplique al resultado de éste un 'map', que convierta los objetos 'blueprint' en los objetos requeridos (objetos con sólo el nombre del plano y el número de puntos).
-        * Env
+## Para la próxima semana
 
+8. A la página, agregue un [elemento de tipo Canvas](https://www.w3schools.com/html/html5_canvas.asp), con su respectivo identificador. Haga que sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, pero lo suficiente para poder 'dibujar' los planos.
 
-app.js <- closure
+9. Al módulo app.js agregue una operación que, dado el nombre de un autor, y el nombre de uno de sus planos dados como parámetros, haciendo uso del método getBlueprintsByNameAndAuthor de apimock.js y de una función _callback_:
+    * Consulte los puntos del plano correspondiente, y con los mismos dibuje consectivamente segmentos de recta, haciendo uso [de los elementos HTML5 (Canvas, 2DContext, etc) disponibles](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_canvas_tut_path)* Actualice con jQuery el campo <div> donde se muestra el nombre del plano que se está dibujando (si dicho campo no existe, agruéguelo al DOM).
 
-https://www.w3schools.com/jquery/jquery_selectors.asp
+10. Verifique que la aplicación ahora, además de mostrar el listado de los planos de un autor, permita seleccionar uno de éstos y graficarlo. Para esto, haga que en las filas generadas para el punto 5 incluyan en la última columna un botón con su evento de clic asociado a la operación hecha anteriormente (enviándo como parámetro los nombres correspondientes).
 
+11. Verifique que la aplicación ahora permita: consultar los planos de un auto y graficar aquel que se seleccione.
 
-Bootstrap js 
+12. Una vez funcione la aplicación (sólo front-end), haga un módulo (llámelo 'apiclient') que tenga las mismas operaciones del 'apimock', pero que para las mismas use datos reales consultados del API REST. Para lo anterior revise [cómo hacer peticiones GET con jQuery](https://api.jquery.com/jquery.get/), y cómo se maneja el esquema de _callbacks_ en este contexto.
 
-Callback model
-
-2. Construír un módulo controlador app.js, siguiendo el [patrón Módulo de JavaScript](https://toddmotto.com/mastering-the-module-pattern/).
-
-Como datos privados del módulo:
-
-    - El usuario seleccioando
-
-Convertir la lista de los planos a lista de identificadores y número de puntos, usando map
-
-1. Configurar
-
-
-
-
-    
+13. Modifique el código de app.js de manera que sea posible cambiar entre el 'apimock' y el 'apiclient' con sólo una línea de código.
