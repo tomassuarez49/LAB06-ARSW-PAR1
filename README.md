@@ -43,7 +43,7 @@
     src/main/resources/static
     ```
 
-4. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del autor, y botón de 'Get blueprints'.
+4. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del autor, botón de 'Get blueprints', campo <div> donde se mostrará el nombre del autor seleccionado, [la tabla HTML](https://www.w3schools.com/html/html_tables.asp) donde se mostrará el listado de planos (con sólo los encabezados), y un campo <div> donde se mostrará el total de puntos de los planos del autor. Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.
 
 5. En el elemento \<head\> de la página, agregue las referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap. 
     ```html
@@ -56,8 +56,6 @@
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet"
           href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-        
-
     </head>
     ```
 
@@ -85,10 +83,19 @@
     * El nombre del usuario seleccionado.
     * Una lista de objetos, donde cada objeto tendrá dos propiedades: nombre de plano, y número de puntos del plano.
 
-4. Agregue al módulo 'app.js' (dentro de la clausura) una operación que permita actualizar el listado de los planos, a partir del nombre de su autor. Para esto:
-    * Invoque la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
-        * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos (usted decida los nombres de las propiedades)
+4. Agregue al módulo 'app.js' (dentro de la clausura) una operación que permita actualizar el listado de los planos, a partir del nombre de su autor. Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
+    * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
+
+    * Sobre el listado resultante, haga otro 'map', que tome cada uno de estos elementos, y a través de jQuery agregue un elemento \<tr\> (con los respectvos \<td\>) a la tabla creada en el punto 4. Tenga en cuenta los [selectores de jQuery](https://www.w3schools.com/JQuery/jquery_ref_selectors.asp) y [los tutoriales disponibles en línea](https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-append-and-remove-table-row-dynamically). Por ahora no agregue botones a las filas generadas.
+
+    * Sobre cualquiera de los dos listados (el original, o el transformado mediante 'map'), aplique un 'reduce' que calcule el número de puntos. Con este valor, use jQuery para actualizar el campo correspondiente dentro del DOM.
+
+5. Asocie la operación antes creada (la de app.js) al evento 'on-click' del botón de consulta de la página.
+
+6. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
+
+    
     * Mostrar el listado de tuplas nombreplano/numero_puntos a partir de un nombre de autor. Para hacer esto:
         * Haga que la operación 
         * Use la operación de consulta de planos de 'apimock'. Aplique al resultado de éste un 'map', que convierta los objetos 'blueprint' en los objetos requeridos (objetos con sólo el nombre del plano y el número de puntos).
